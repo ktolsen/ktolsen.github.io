@@ -1,0 +1,273 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800);
+
+body {
+	text-align: center;
+	margin:auto;
+	color: #fff;
+	font-size: 15px;
+}
+
+header {
+	color: #ff3300;
+	font-weight: 100;
+	font-family: 'Raleway';
+	font-size: 2.5em;
+	text-transform: uppercase;
+	letter-spacing: .3em;
+	text-align: center;
+}
+
+main {
+	font-weight: 400;
+	font-family: 'Raleway';
+	text-align: center;
+}
+
+h2{
+	font-weight: 400;
+	color: #00b2b3;
+	letter-spacing: .1em;
+	font-size: 1.5em;
+	font-family: 'Raleway';
+}
+
+hr {
+	width: 20em;
+	height: .5em;
+	background-color: white;
+	border: 0 none;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+h3 {
+	color: #ff6600;
+	text-transform: uppercase;
+	font-size: 1em;
+	letter-spacing: .2em;
+	margin-bottom: -.75em;
+	text-align: center;
+}
+
+p {
+	line-height: 1.5em;
+	font-family: "Playfair Display";
+}
+
+#fido {
+	font-style: italic;
+	margin-bottom: 40em;
+}
+
+a{
+	color:white;
+	text-decoration: none;
+}
+
+nav {
+	padding: 1.25em;
+}
+
+ul {
+	display: inline;
+}
+
+footer {
+	font-family: "Raleway";
+	font-weight: 700;
+	font-size: 1em;
+	text-align: center;
+}
+
+#seattle{
+	background: url(images/IMG_2283.jpg) no-repeat center center fixed;
+	background-size:cover;
+	max-width: 1920px;
+	padding:70px 0 100px;
+}
+
+#two_column {
+    padding: 1.25em;
+    background-color: #00b2b3;
+}
+
+#left {
+    padding: 1.25em;
+    float: left;
+    width: 46%;
+    background-color: #DCC7BE;
+    background: url(images/IMG_2294.jpg);
+    background-size: 100%;
+}
+
+
+#right {
+    padding: 1.25em;
+    float: right;
+    width: 46%;
+    background: url(images/IMG_2291.jpg);
+    background-size: 100%;
+}
+
+.image-container {
+	position: relative;
+	width: auto;
+	height: 20em;
+}
+
+.image-container .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: #FFF;
+}
+
+.image-container:hover .after {
+    display: block;
+    background: rgba(0, 0, 0, .6);
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+@media screen and (max-width:1000px) {
+header{
+	font-size: 1.75em;
+}
+
+h2{
+	font-size: 1em;
+}
+
+h3{
+	font-size: .75em;
+}
+
+p{
+	font-size: .75em;
+}
+
+hr {
+	width: 15em;
+	height: .25em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	}
+
+#fido{
+	margin-bottom: 20em;
+}
+
+#two_column {
+    padding: 1em;
+}
+
+#left{
+	padding: 1em;
+	width: 46%;
+}
+
+#right{
+	padding: 1em;
+	width: 46%;
+}
+
+.image-container {
+	position: relative;
+	width: auto;
+	height: 15em;
+}
+
+}
+
+@media screen and (max-width:900px) {
+	#fido{
+	margin-bottom: 15em;
+}
+
+#two_column {
+    padding: 1em;
+}
+
+#left{
+	padding: .75em;
+	width: 46%;
+	height: 15em;
+}
+
+#right{
+	padding: .75em;
+	width: 46%;
+	height: 15em;
+}
+
+.image-container {
+	position: relative;
+	width: auto;
+	height: 10em;
+}
+
+.image-container .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15em;
+    display: none;
+    color: #FFF;
+}
+
+}
+
+@media screen and (max-width:700px) {
+	#fido{
+	margin-bottom: 15em;
+}
+
+#left{
+	width: 95%;
+	height: 10em;
+	display: block;
+	margin-bottom: 1em;
+	margin-right: 1em;
+	float: none;
+}
+
+#right{
+	width: 95%;
+	height: 15em;
+	display: block;
+	margin-bottom: 1em;
+	margin-right: 1em;
+	float: none;
+}
+
+.image-container {
+	position: relative;
+	width: auto;
+	height: 10em;
+}
+
+.image-container .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10em;
+    display: none;
+    color: #FFF;
+    overflow: auto;
+}
+
+
+
