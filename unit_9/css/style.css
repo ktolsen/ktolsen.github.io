@@ -103,12 +103,26 @@ footer {
 	background-color: #002727;
 }
 
-#navtop {
-	background: url(images/IMG_2283.jpg) no-repeat center center fixed;
-	background-size:cover;
-	max-width: 1920px;
-	text-align: right;
+
+#navtop img {
+	width: 150px;
+	padding: 12px;
+	float: left;
+	background: url(images/cover1.png) no-repeat center center fixed;
+	background-size: cover;
 }
+
+div#cover {
+	background: url(images/cover1.png) no-repeat center center fixed;
+	background-size: cover;
+	height: 600px;
+}
+
+#navtop {
+	background: url(images/cover1.png) no-repeat center center fixed;
+	background-size: cover;
+}
+
 
 #seattle{
 	background: url(images/IMG_2283.jpg) no-repeat center center fixed;
@@ -197,6 +211,7 @@ footer {
 	text-align: left;
 }
 
+
 #about {
 	background-color: #016869;
 	padding-left: 11.5%;
@@ -207,31 +222,48 @@ footer {
 	border-top: -50%;
 }
 
+
+.large-column{
+    width:60%;
+    float:left;
+    background-color: #014b4b;
+    text-align: left;
+
+}
+
+#figure {
+	width: 35%;
+	margin-bottom: -1em;
+}
+
+.small-column{
+    width:30%;
+    float:right;
+    background-color: #014b4b;
+    text-align: left;
+
+}
+
+#contact-us{
+    background: #014b4b;
+    padding-left: 11.5%;
+    padding-top: 3em;
+    padding-bottom: 3em;
+
+}
+
+
 #contact {
 	background-color: #014b4b;
-	padding-left: 11.5%;
-	padding-top: 3em;
-	padding-bottom: 3em;
-	padding-right: 6.5%;
 	float: left;
-	width: 50.5%;
 	text-align: left;
 }
 
 #form {
 	background-color: #014b4b;
-	float: right;
-	width: 25%;
-	text-align: left;
-	padding-top: 3em;
-	padding-bottom: 4.5em;
-	padding-left: 6.5%;
-	vertical-align: center;
+	  padding-right: 11.5%;
 }
 
-#figure {
-	margin-bottom: -2.5%;
-}
 
 #navb {
 	color: white;
@@ -462,28 +494,6 @@ hr {
 	text-align: left;
 }
 
-#figure {
-	max-width: 50%;
-}
-
-#contact {
-	padding-left: 11.5%;
-	padding-top: 2em;
-	padding-right: 11.5%;
-	padding-bottom: 1em;
-	text-align: left;
-	width:77%;
-}
-
-#form {
-	width: 77%;
-	float: left;
-	display: block;
-	padding-top:0;
-	padding-left: 11.5%;
-	padding-right: 11.5%;
-
-}
 
 #navb {
 	font-size: 30%;
