@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prototype techniques</title>
+	<link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://unpkg.com/intersection-observer"></script>
+	<script src="https://unpkg.com/scrollama"></script>
+</head>
+<style type="text/css">
+	body, html {
+		top:0;
+		left:0;
+		margin:0;
+		font-family:'Helvetica Neue', sans-serif;
+	}
+	nav	{
+		background-color:white;
+		position:fixed;
+		width:100%;
+		display:flex;
+		justify-content: center;
+		align-items:center;
+		border-bottom:0.05em solid black;
+		z-index:100;
+	}
+	.title {
+		height:50vh;
+		color:white;
+		background-color:#677588;
+/*		background-image:url('https://i.pinimg.com/originals/7f/43/1c/7f431c9e6991b1a83d79e359dc09c99d.gif');*/
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: left top;
+		background-size: auto 100%;
+	}
+	.title h1 {
+		font-size:5em;		
+		margin-left:15%;
+		margin-right:15%;
+	}
+	.title h2 {
+		font-size:2em;
+		font-weight:400;
+		color:black;
+		margin-left:15%;
+		margin-right:15%;
+	}
+	.header {
+		text-align:center;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		border:0.5em #4E79A7;
+		padding:5% 0%;
+		animation: fadeIn 0.5s ease-in-out;
+	}
+	.header h1{
+		font-family:'Helvetica Neue', sans-serif;
+		font-weight:800;
+		margin:0;
+	}
+	.header h2 {
+		margin:1;
+	}
+	.sticky {
+		float:right;
+		top:25%;
+		position:sticky;
+		width:50%;
+		display:inline-flex;
+					background-color:white;
+	}
+	.leftside{
+		background-color:black;
+		color:white;
+		width: 30%;
+    	padding: 5% 10% 5% 5%;
+	}
+	.progressive{
+		width:100%;
+		display:block;
+		margin-bottom:100%!important;
+	}
+	.end {
+		margin-bottom:5%!important;
+	}
+	#counter {
+		width:100%;
+		font-size:10em;
+		text-align:center;
+		margin:0;
+		padding:0%;
+		line-height:1em;
+		font-weight: 800;
+    	letter-spacing: -0.05em;
+	}
+	#counter h2{
+		text-align:center;
+	}
+	.text {
+		margin-left:5%;
+		margin-right:5%;
+		line-height:2em;
+		opacity:0;
+		margin-top:0%;
+		transition:0.5s ease-in-out;
+	}
+	.text h1 {
+		font-size:4em;
+		letter-spacing:-0.05em;
+		line-height:1em;
+		font-weight:900;
+		width:60%;
+	}
+	.text h2 {
+		font-weight:400;
+		font-size:1em;
+		font-style:italic;
+	}
+	.text h3 {
+		font-weight:900;
+		font-size:2.5em;
+		color:#677588;
+		line-height:1.25em;
+		margin-left:10%;
+		margin-right:10%;
+		text-align:center;
+	}
+		.text h4 {
+		font-weight:400;
+		font-size:2em;
+		font-style:italic;
+	}
+	.sticky h1 {
+		width:100%;
+		font-size:3em;
+	}
+	.sticky h2 {
+		font-size:0.8em;
+		text-transform:uppercase;
+		letter-spacing:0.1em;
+	}
+	.sticky h3 {
+		width:100%;
+		font-size:2em;
+	}
+	.sticky h4 {
+		width:100%;
+		font-size:2em;
+	}
+	.center_aligner {
+		overflow:none;
+		width:100%;
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		margin:2% 0%;
+	}
+	iframe {
+		width:1100px;
+		height:600px;
+		margin:0%;
+	}
+	.tableauPlaceholder{
+		width:50%;
+		z-index:0;
+	}
+	img{
+		text-align:center;
+		margin:0%;
+		display:inline-block;
+		border:0.5em solid black;
+	}
+	.caption {
+		font-size:0.8em;
+		color:#666666;
+		text-align:center;
+		margin-left:15%;
+		margin-right:15%;
+	}
+	.small {
+		width:30%;
+	}
+	.medium {
+		width:70%;
+	}
+	.large {
+		width:80%;
+		display:block;
+	}
+	@keyframes fadeIn {
+		0%{
+			opacity:0;
+		}
+		100%{
+			opacity:1;
+		}
+	}
+	@media screen and (max-width:767px){
+		.sticky {
+	/*		bottom:0;*/
+			width:50%;
+			float:none;
+			margin:auto;
+			display:flex;
+			line-height:2em;
+		}
+		.sticky h1 {
+			font-size:2em;
+			line-height:2em;
+		}
+		.sticky h2 {
+			font-size:0.5em;
+		}
+		.sticky h3 {
+			margin:10% 5%;
+		}
+		#counter {
+			font-size:5em;
+		}
+		.leftside {
+			width: 85%;
+    		padding: 5% 10% 5% 5%;
+		}
+		.small {
+			width:80%;
+		}
+		.title {
+			height:80vh;
+		}
+		.text h1 {
+			font-size:2.5em;
+			width:80%;
+		}
+		.text {
+			margin:10% 5%;
+		}
+		iframe {
+			height:300px;
+		}
+
+	}
+</style>
+<body>
+
+<!-- nav -->
+<nav>
+	<h3>Trends in U.S.-Canada and U.S.-Mexico Border Crossings</h3>
+</nav>
+
+<!-- text -->
+<div class='header title step'>
+	<div class='aligner'>
+		<h1>Trends in U.S.-Canada and U.S.-Mexico Border Crossings</h1>
+		<br />
+		<h2>Viewing trends in border crossings with a closer look at the impact of COVID-19.</h2>	
+	</div>
+</div>
+
+
+<div class='text'>
+	<h2>Katie Olsen</h2>	
+	In 1994, the collection of border-crossing data began in response to the signing of the North Amerian Free Trade Agreement (FAFTA), signed by the United States, Canada, and Mexico. Since 1995, the Bureau of Transportation Statistics has maintained the Border Crossing/Entry Database with data provided by the U.S. Customs and Border Protection. This database allows the tracking of all incoming traffic to the United States. The database includes pedestrians, personal vehicles, buses, trains, trucks, and containers entering the United States through land ports and ferry crossings on the U.S.-Canada and U.S.-Mexico borders. This visual essay explores the trends in U.S. border crossings based on this data from the Bureau of Transportation Statistics.
+	<br />
+	<br />
+	<br />
+</div>
+
+
+<hr>
+
+<div class='text'>
+	<h3>From 1996 until 2020, 73% of border crossings have been from Mexico and 27% from Canada.<h3>
+</div>
+
+<div class='center_aligner'>
+	<!-- change line 120 if you want to change the size of the image -->
+	<img class='medium' src="images/8653647702_b6949027ba_and_8653651422_1e29c15c67_6k_.jpg"> 	
+</div>
+
+<!-- caption for image 1 -->
+<div class='center_aligner'>
+	<div class='caption'>San Ysidro Border Crossing. (Photos by Josh Denmark)</div>	
+</div>
+<br /><br />
+
+<hr>
+
+<div class='text'>
+	<h1>An Overview of Trends</h1>
+	The greatest number of border crossings into the United States are from the land that borders Mexico. Most crossings are made through personal vehicles and personal vehicle passengers. Pedestrians are the next largest group.
+</div>
+
+<div class='center_aligner'>
+	<!-- insert tableau public embed link below this line -->
+<div class='tableauPlaceholder' id='viz1615572122284' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;Multiples&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BorderCrossingSystem-VisualEssay&#47;Multiples' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;Multiples&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1615572122284');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else { vizElement.style.width='100%';vizElement.style.height='2027px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+</div>
+
+<div class='center_aligner'>
+	<!-- change line 120 if you want to change the size of the image -->
+	<img class='large' src="images/8653175398_0b0a1e65c1_6k.jpg"> 	
+</div>
+
+<!-- caption for image 1 -->
+<div class='center_aligner'>
+	<div class='caption'>Pedestrians waiting in line for U.S. Customs and Border Protection processing at Calexico, California. (Photo by Josh Denmark)</div>	
+</div>
+
+<div class='text'>
+	<h4>Other Events that Stand Out from the Overview of Trends</h4>
+</div>
+
+<div class='center_aligner'>
+	<!-- insert tableau public embed link below this line -->
+<div class='tableauPlaceholder' id='viz1615575225122' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;Multiples2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BorderCrossingSystem-VisualEssay&#47;Multiples2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;Multiples2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1615575225122');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else { vizElement.style.width='100%';vizElement.style.height='927px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+</div>
+
+<div class='text'>
+	<h1>An Overview to the Ports of Entry</h1>
+	Fifteen states have ports of entry in this dataset. Four states border Mexico: Arizona, California, New Mexico, and Texas. Eleven states border Canada: Alaska, Idaho, Maine, Michigan, Minnesota, Montana, New York, North Dakota, Ohio, Vermont, and Washington. There are 119 ports of entry to the United States, 90 ports with Canada, and 29 ports with Mexico.<br />
+	<br />
+	The United States' border with Mexico is 1,954 miles long, starting from the Pacific Ocean to the southern tip of Texas. The Canada-United States border is the longest international border in the world between two countries at 5,525 miles.
+</div>
+
+
+<!-- tableau public -->
+<div class='center_aligner'>
+	<!-- insert tableau public embed link below this line -->
+<div class='tableauPlaceholder' id='viz1615566868445' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;PortsMap&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BorderCrossingSystem-VisualEssay&#47;PortsMap' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;PortsMap&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1615566868445');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+</div>
+
+<div class='text'>
+	<h1>A Closer Look at the Ports of Entry</h1>
+	The busiest Canadian port is Buffalo Niagara Falls in New York. From 1995 until 2020, it has had more than 562.1M entries into the United States. The Canadian port of entry with the lowest amount of border crossings is Toledo, located in Ohio. It totaled 607 crossings from personal vehicles by ferry (seasonal crossings from April to mid-September). The Whitlash port of entry, located in Montana, has the lowest traffic of all the land border crossings at 69,196 crossings. It averages just two vehicles per day.<br />
+
+
+	<br />The busiest Mexican port is San Ysidro in California. From 1995 until 2020, it has had more than 1.2B entries into the United States. The Mexican port of entry with the lowest number of border crossings is Houston. It had a total of 2 Truck Containers Loaded. The Boquillas port of entry, located in Texas, has the lowest traffic of all land border crossings at 74,568. It is a port of entry that is unstaffed by Customs and Border Protection agents but has at least one National Park Service employee present when it's open. It is the only unstaffed legal border crossing on the U.S.-Mexico border and only one of four that allow only pedestrian traffic.
+</div>
+
+
+<!-- image 1 -->
+<div class='center_aligner'>
+	<!-- change line 120 if you want to change the size of the image -->
+	<img class='large' src="images/RainbowBridge_NiagaraFalls and Whitlash_Mt_Poe.jpg"> 	
+</div>
+<!-- caption for image 1 -->
+<div class='center_aligner'>
+	<div class='caption'> <b>Left:</b> Rainbow Bridge as seen from Canada in 2013. (Photo by Verne Equinox)   <b>Right:</b> U.S. Border Inspection Station at Whitlash, Montana as seen in 1997. The building was replaced in 2012. (Photo by Wbaron)
+	</div>	
+</div>
+<br />
+<!-- image 1 -->
+<div class='center_aligner'>
+	<!-- change line 120 if you want to change the size of the image -->
+	<img class='large' src="images/San Ysidro and Boquillas_crossing_port_of_entry.jpg"> 	
+</div>
+<!-- caption for image 1 -->
+<div class='center_aligner'>
+	<div class='caption'> <b>Left:</b> Cars in line at the U.S. Customs and Border Protection inspection station at San Ysidro, California. (Photo by Mani Albrecht)   <b>Right:</b> Boquillas Port of Entry, Texas in 2013. (Photo by Bic) 
+	</div>	
+</div>
+<br />
+
+<div class='center_aligner'>
+	<!-- insert tableau public embed link below this line -->
+<div class='tableauPlaceholder' id='viz1615569943660' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;PortsBubble&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BorderCrossingSystem-VisualEssay&#47;PortsBubble' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;PortsBubble&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1615569943660');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+</div>
+
+<hr>
+
+<div class='text'>
+	<h3>Ambassador Bridge, in Detroit, is one of the few privately owned U.S.-Canada crossings. It was owned by Grosse Pointe billionaire Manuel Moroun (through the Detroit International Bridge Company) until his death in July 2020. It carries around 60-70 percent of commercial truck traffic in that region.<h3>
+</div>
+
+<div class='center_aligner'>
+	<!-- change line 120 if you want to change the size of the image -->
+	<img class='large' src="images/Ambassador_Bridge_and_a_fragment_of_Windsor.jpg"> 	
+</div>
+
+<!-- caption for image 1 -->
+<div class='center_aligner'>
+	<div class='caption'>Aerial photo of the Ambassador Bridge. It connects Detroit, Michigan with Windsor, Ontario. (Photo by Angela Anderson-Cobb)</div>	
+</div>
+<br />
+<hr>
+
+<div class='text'>
+	<h1>Looking at the Impact of COVID-19</h1>
+	Travel and transportation will feel the effects of the COVID-19 pandemic for years to come. Beginning in March of 2020, stay-at-home orders started to take effect in various states restricting travel. Throughout the year there were marked reductions in all forms of passenger travel. The U.S.-Canada border has seen more of a reduction in crossings than the U.S.-Mexico border, particularly pedestrians and passengers. There was a reduction in commercial transportation from March to May/June, but it has been steadily recovering from those losses. 
+</div>
+
+<div class='center_aligner'>
+	<!-- insert tableau public embed link below this line -->
+<div class='tableauPlaceholder' id='viz1616073729492' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;Multiples2019-2020&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BorderCrossingSystem-VisualEssay&#47;Multiples2019-2020' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;Multiples2019-2020&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1616073729492');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else { vizElement.style.width='100%';vizElement.style.height='2427px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+</div>
+
+<div class='text'>
+	Looking at a year of change in percentages. Comparing the data for 2019 and 2020. 
+</div>
+
+
+<div class='center_aligner'>
+	<!-- insert tableau public embed link below this line -->
+<div class='tableauPlaceholder' id='viz1615575511539' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;Percentagesfor2019-2020&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BorderCrossingSystem-VisualEssay&#47;Percentagesfor2019-2020' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BorderCrossingSystem-VisualEssay&#47;Percentagesfor2019-2020&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1615575511539');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1024px';vizElement.style.height='795px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1024px';vizElement.style.height='600px';} else { vizElement.style.width='100%';vizElement.style.height='600px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+</div>
+
+<div class='text'>
+	Comparing types of transportation for the Month of December 2019 and December 2020.
+</div>
+
+<!-- interactive embed, adjust the width and height as necessary, copy lines 155 to 157 to create a new interactive embed --> 
+<div class='center_aligner'>
+	<iframe src="interactive.html" frameBorder=0 scrolling=no></iframe>
+</div>
+
+<div class='text'>
+	Comparing pedestrians and passengers for the Month of December 2019 and December 2020.
+</div>
+
+<!-- interactive embed, adjust the width and height as necessary, copy lines 155 to 157 to create a new interactive embed --> 
+<div class='center_aligner'>
+	<iframe src="interactive 2.html" frameBorder=0 scrolling=no></iframe>
+</div>
+
+
+<div class='text'>
+	<h1>Takeaways</h1>
+		This visual essay looks at the dataset for in-bound U.S. border crossings and focuses mainly on the yearly traffic from 1995 to the present day. It allows us to see the different forms of transportation utilized at various ports, how transit has changed over time at both border crossings, and how events can shape travel trends.    <br /><br />
+		Please note that this dataset only shows trends in traffic crossings into the U.S. from Mexico and Canada. The data for outbound traffic crossings are not collected. The dataset also compiles the statistics by month.  <br /><br />
+</div>
+
+<hr>
+
+<div class='text'>
+	<h2>Data sources</h2>
+		Source: Bureau of Transportation Statistics, U.S. Government<br />
+		URL: https://www.kaggle.com/divyansh22/us-border-crossing-data<br />
+		URL: https://data.bts.gov/Research-and-Statistics/Border-Crossing-Entry-Data/keg4-3bc2/data <br /><br />
+
+		<h2>Photos</h2>
+		U.S. Customs and Border Protection (https://www.flickr.com/photos/cbpphotos)<br /><br />
+		Wikimedia: <br />
+		https://commons.wikimedia.org/wiki/File:RainbowBridge_NiagaraFalls.jpg<br />
+		https://commons.wikimedia.org/wiki/File:Whitlash_Mt_Poe_South_View.jpg<br />
+		https://commons.wikimedia.org/wiki/File:Boquillas_crossing_port_of_entry.jpg<br />
+		https://commons.wikimedia.org/wiki/File:Ambassador_Bridge_and_a_fragment_of_Windsor.jpg
+
+		<br /><br />
+
+		<h2>Other Information</h2>
+		Bureau of Transportation Statistics, U.S. Government<br />
+		https://en.wikipedia.org/wiki/List_of_Canada%E2%80%93United_States_border_crossings<br />
+		https://en.wikipedia.org/wiki/List_of_Mexico%E2%80%93United_States_border_crossings<br />
+		https://en.wikipedia.org/wiki/Canada%E2%80%93United_States_border<br />
+		https://en.wikipedia.org/wiki/Mexico%E2%80%93United_States_border
+		<br /><br />
+		<br /><br />
+</div>
+
+
+</body>
+<script type="text/javascript">
+
+// instantiate the scrollama
+const scroller = scrollama();
+const scroller2 = scrollama();
+
+scroller
+  .setup({
+    step: ".text",
+    offset: 0.9,
+  })
+  .onStepEnter(response => {
+    // { element, index, direction }
+    el=response.element;
+    el.style.opacity=1;
+    el.style.marginTop='5%';    
+  })
+  .onStepExit(response => {
+    // { element, index, direction }  
+    el=response.element;
+  })
+  ;
+ // setup resize event
+window.addEventListener("resize", scroller.resize);
+
+scroller2
+  .setup({
+    step: ".progressive",
+    offset: 0.6,
+  })
+  .onStepEnter(response => {
+    // { element, index, direction }
+    el=response.element;
+    el.style.opacity=1;
+    if(response.index==0 || 1 || 2){
+    	stick('dynamic_sticky1')
+    	response.direction=='down'
+    	if(response.index==0){
+    		count(1,16,1,'Energy','after a 15 minute break','dynamic_sticky1')
+    	} else if (response.index==1){
+    		count(1,3.8,.1,'Engagement','average','dynamic_sticky1')
+    	} else if (response.index==2){
+    		count(0,0.9,.1,'Mood','increase','dynamic_sticky1')
+    	}
+    }
+  })
+  .onStepExit(response => {
+    // { element, index, direction }  
+    el=response.element;
+    console.log(response.index)
+    if(response.index==2){
+    	unstick('dynamic_sticky1')
+    }
+    el.style.opacity=0;
+  })
+  ;
+ // setup resize event
+window.addEventListener("resize", scroller2.resize);
+
+function count(number1, number2, step, title, label, location_id, prefix='+', suffix='%'){
+	target = document.querySelector('#'+location_id)
+	console.log(target)
+	let text=number1;
+
+	setInterval(function(){
+		if(text!=number2){
+			num = text+step
+			if(num % 1 == 0){
+				text = num
+			} else {
+				text = parseFloat(num.toFixed(2))
+			}
+			target.innerHTML="<div class='aligner'><h1>"+title+"</h1><div id='counter'>"+prefix+text+suffix+"</div><h2>"+label+"</h2></div>"
+		}
+	}, 30);
+}
+
+function stick(location_id){
+	target = document.querySelector('#'+location_id)
+	target.style.position="sticky"
+}
+
+function unstick(location_id){
+	target = document.querySelector('#'+location_id)
+	target.style.position="relative"
+}
+
+</script>
+
+</html>
